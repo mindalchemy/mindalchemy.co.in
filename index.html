@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBB Test (Belief Block Buster Test)</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --error-color: #e74c3c;
+            --success-color: #2ecc71;
+            --background-color: #f5f6fa;
+            --card-color: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-color);
+            padding: 1rem;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .quiz-card {
+            background: var(--card-color);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .question {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+
+        .question.error {
+            border: 2px solid var(--error-color);
+        }
+
+        .question-text {
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .option:hover {
+            background-color: #e9ecef;
+        }
+
+        .option input {
+            margin-right: 0.5rem;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        .results {
+            display: none;
+        }
+
+        .results.active {
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background-color: #e9ecef;
+            margin-bottom: 2rem;
+            border-radius: 2px;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="quiz-card">
+            <h1>BBB Test (Belief Block Buster Test)</h1>
+            <div class="progress-bar">
+                <div class="progress" style="width: 33.33%"></div>
+            </div>
+            
+            <form id="bbbForm">
+                <!-- Section 1: Process Focused Mind -->
+                <div class="section active" data-section="1">
+                    <h2>Section 1: Process Focused Mind</h2>
+                    <div class="question" data-question="1">
+                        <p class="question-text">1. The thoughts of not achieving your final goal (or fear of failure) keeps coming to your mind which gives you a background stress. This hampers your productivity.</p>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q1" value="0">
+                                Yes this is me! I keep thinking about it
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q1" value="1.5">
+                                It happens mostly however sometimes I calm myself down
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q1" value="3">
+                                It happens rarely
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q1" value="5">
+                                It doesn't happen at all
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Questions 2-5 follow the same pattern -->
+                    <!-- Add questions 2-5 here with similar structure -->
+                </div>
+
+                <!-- Section 2: Imperfectionist Mind -->
+                <div class="section" data-section="2">
+                    <!-- Questions 6-10 -->
+                    <p class="question-text">2. When you don't feel like working, you start imagining the good results in the future to motivate yourself to work hard now.</p>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q2" value="0"> Yes this is me! Happens all the time.
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2" value="1.5"> Happens a lot of times except a few situations
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2" value="3"> It happens rarely
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2" value="5"> No never!
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Section 3: Appreciative Mind -->
+                <div class="section" data-section="3">
+                    <!-- Questions 11-15 -->
+                    <p class="question-text">3. Whenever you start something new, you become really excited about it. You work hard for the first few days but soon you start becoming impatient for the results and when you don't get them, you leave that activity.</p>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q3" value="0"> Yes this is me! Happens all the time.
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3" value="1.5"> Happens a lot of times except a few situations
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3" value="3"> It happens rarely
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3" value="5"> No never!
+                        </label>
+                    </div>
+                </div>
+
+                 <!-- Section 3: Appreciative Mind -->
+                <div class="section" data-section="4">
+                    <p class="question-text">4. When people get the results which you want in your life, you feel good for them but bad for yourself. You feel regretful/guilty/frustrated/inferior and you don't feel like working for the rest of the day now.</p>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q4" value="0"> Yes this is me! Happens all the time.
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4" value="1.5"> Happens a lot of times except a few situations
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4" value="3"> It happens rarely
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q4" value="5"> No never!
+                        </label>
+                    </div>
+
+                </div>
+
+
+                 <!-- Section 3: Appreciative Mind -->
+                 <div class="section" data-section="5">
+                    <p class="question-text">5. You have been trying to solve a question or understand a concept for last 30 minutes but you are not able to get the correct answer or understand the concept well, you feel discouraged and frustrated that you don't feel like working now?</p>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q5" value="0"> Yes this is me! Happens all the time.
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5" value="1.5"> Happens a lot of times except a few situations
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5" value="3"> It happens rarely
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5" value="5"> No never!
+                        </label>
+                    </div>
+
+                 </div>
+
+
+                  <!-- Section 3: Appreciative Mind -->
+                <div class="section" data-section="6">
+                    <p class="question-text">6. You don't feel like working when there is no proper time available. 15 mins here, 30 mins there is not your cup of tea.</p>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q6" value="0"> Yes this is me! Happens all the time.
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6" value="1.5"> Happens most of the times
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6" value="3"> It happens rarely
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6" value="5"> No never!
+                        </label>
+                    </div>
+
+                </div>
+
+
+                 <!-- Section 3: Appreciative Mind -->
+                 <div class="section" data-section="7">
+                    <p class="question-text">7. When you work, you work with full energy or focus. When I don't have full energy or focus, I don't feel like working at all. I cannot work with half a mind. Agreed?</p>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q7" value="0"> Yes this is me! Happens all the time.
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7" value="1.5"> Happens a lot of times except a few situations
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7" value="3"> It happens rarely
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7" value="5"> No never!
+                        </label>
+                    </div>
+
+                 </div>
+
+
+                  <!-- Section 3: Appreciative Mind -->
+                <div class="section" data-section="8">
+                    <p class="question-text">8. If you plan to start your work at 9:00AM but could not start till 9:35 AM, do you feel like not doing it anymore just because you could not start your work on the time you decided?</p>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q8" value="0"> Yes this is me! Happens all the time.
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8" value="1.5"> Happens a lot of times except a few situations
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8" value="3"> It happens rarely
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8" value="5"> No never!
+                        </label>
+                    </div>
+
+                </div>
+
+
+                 <!-- Section 3: Appreciative Mind -->
+                 <div class="section" data-section="9">
+                    <p class="question-text">9. If you are able to maintain your streak of consistency in anything, you will work hard but once that streak is broken, you find it really hard to come back.</p>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q9" value="0"> Yes this is me! Happens all the time.
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9" value="1.5"> Happens a lot of times except a few situations
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9" value="3"> It rarely happens! Breaking streak mostly doesn't affect me
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9" value="5"> No never!
+                        </label>
+                    </div>
+
+                 </div>
+
+
+                  <!-- Section 3: Appreciative Mind -->
+                <div class="section" data-section="10">
+                    <p class="question-text">10. Due to genuine reasons, your whole day was spent in unproductive activities (attending guests, going out, etc) and now 90 minutes are left at the end of your work. Do you feel like not working in those 90 minutes as well because you want to start from tomorrow with a fresh mind?</p>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q10" value="0"> Yes this is me! Happens all the time.
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q10" value="1.5"> Happens a lot of times except a few situations
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q10" value="3"> Doesn't happen. I can work during those left out hours.
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q10" value="5"> No never!
+                        </label>
+                    </div>
+
+                </div>
+
+                 <!-- Section 3: Appreciative Mind -->
+                 <div class="section" data-section="11">
+                    <p class="question-text">11. While working when you face small setbacks (could not get the correct answer of the questions, could not understand a concept, yuou broke your streak etc). Thoughts of past failures, guilt, regret, fear of failure in future, frustration, inferiority etc. fills your mind so much so that you cannot work now.
+                    </p>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q11" value="0"> Yes this is me! Happens all the time.
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q11" value="1.5"> Most of the time
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q11" value="3"> It rarely happens! I mostly dont get frustrated while i hit a setback.
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q11" value="5"> Never! This is not me.
+                        </label>
+                    </div>
+
+                 </div>
+
+
+                  <!-- Section 3: Appreciative Mind -->
+                <div class="section" data-section="12">
+                    <p class="question-text">12. You decided to complete 4 tasks in next 4 hours, however, you could not complete even a single task after 2.5 hours. Do you get frustrated and feel like skipping the remaining 1.5 hours now?</p>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q12" value="0"> Yes this is me! Happens all the time.
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q12" value="1.5"> Most of the time
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q12" value="3"> I mostly work in the remaining time as well
+
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q12" value="5"> No Never!
+
+
+                        </label>
+                    </div>
+
+                </div>
+
+
+                 <!-- Section 3: Appreciative Mind -->
+                 <div class="section" data-section="13">
+                    <p class="question-text">13. Do you feel like working on the cavagtions or holidays as well.? nOt out fo guilt or pressure but out to genuine interest?
+                    </p>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q13" value="0"> I just love my work so i feel like finding an hour or two to dedicate to my work during vacations.
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q13" value="1.5"> Not out of interest but yes, sometimes out of guilt or pressure
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q13" value="3"> No Never! Work is pain. Who wants to do it on vacation?
+                        </label>
+                    </div>
+
+                 </div>
+
+
+                  <!-- Section 3: Appreciative Mind -->
+                <div class="section" data-section="14">
+                    <p class="question-text">14. How happy do you feel while telling others what you have learned in your work? OR if you are a student, how much excitement do you feel when you tell others about what you have learned in your books?
+                    </p>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q14" value="0"> I feel good and happy while talking about my work and what i have learned recently.
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q14" value="1.5"> I talk about it but just because i need to not because i feel extra happy
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q14" value="3"> After i have done my work, i just dont want to talk about it.
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q14" value="5"> Honestly, i hate my work so I just dont want to talk about it.
+                        </label>
+                    </div>
+
+                </div>
+
+
+                 <!-- Section 3: Appreciative Mind -->
+                 <div class="section" data-section="15">
+                    <p class="question-text">15. What do you work for?
+                    </p>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q15" value="0"> Hope of success in future (long term or short term both)
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q15" value="1.5"> Fear of failure in future (long term or short term both)
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q15" value="3"> Joy of working at present
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q15" value="5"> Mostly hope of success and fear of failure but sometimes joy of working as well
+                        </label>
+                    </div>
+
+                 </div>
+
+                
+
+                <div class="navigation">
+                    <button type="button" id="prevBtn" disabled>Previous</button>
+                    <button type="button" id="nextBtn">Next</button>
+                    <button type="submit" id="submitBtn" style="display: none;">Submit</button>
+                </div>
+            </form>
+
+            <div class="results">
+                <h2>Your Results</h2>
+                <table>
+                    <tr>
+                        <th>Category</th>
+                        <th>Score</th>
+                        <th>Out of</th>
+                    </tr>
+                    <tr>
+                        <td>Process Focused Mind</td>
+                        <td id="processScore">-</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td>Imperfectionist Mind</td>
+                        <td id="imperfectionistScore">-</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td>Appreciative Mind</td>
+                        <td id="appreciativeScore">-</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total Score</strong></td>
+                        <td id="totalScore">-</td>
+                        <td>75</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('bbbForm');
+        const sections = document.querySelectorAll('.section');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const progressBar = document.querySelector('.progress');
+        let currentSection = 0;
+
+        function showSection(sectionIndex) {
+            sections.forEach((section, index) => {
+                section.classList.toggle('active', index === sectionIndex);
+            });
+
+            prevBtn.disabled = sectionIndex === 0;
+            nextBtn.style.display = sectionIndex === 14 ? 'none' : 'block';
+            submitBtn.style.display = sectionIndex === 14 ? 'block' : 'none';
+            
+            progressBar.style.width = `${((sectionIndex + 1) * 6.666)}%`;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSection > 0) {
+                currentSection--;
+                showSection(currentSection);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (validateSection(currentSection)) {
+                if (currentSection < sections.length - 1) {
+                    currentSection++;
+                    showSection(currentSection);
+                }
+            } else {
+                alert('Please answer all questions in this section before proceeding.');
+            }
+        });
+
+        function validateSection(sectionIndex) {
+            const currentSectionEl = sections[sectionIndex];
+            const questions = currentSectionEl.querySelectorAll('.question');
+            let valid = true;
+
+            questions.forEach(question => {
+                const radios = question.querySelectorAll('input[type="radio"]');
+                const answered = Array.from(radios).some(radio => radio.checked);
+                question.classList.toggle('error', !answered);
+                valid = valid && answered;
+            });
+
+            return valid;
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if (!validateSection(currentSection)) {
+                alert('Please answer all questions before submitting.');
+                return;
+            }
+
+            const formData = new FormData(form);
+            let processScore = 0;
+            let imperfectionistScore = 0;
+            let appreciativeScore = 0;
+
+            // Calculate scores
+            for (let [name, value] of formData.entries()) {
+                const questionNum = parseInt(name.replace('q', ''));
+                const score = parseFloat(value);
+
+                if (questionNum <= 5) {
+                    processScore += score;
+                } else if (questionNum <= 10) {
+                    imperfectionistScore += score;
+                } else {
+                    appreciativeScore += score;
+                }
+            }
+
+            const totalScore = processScore + imperfectionistScore + appreciativeScore;
+
+            // Display results
+            document.getElementById('processScore').textContent = processScore.toFixed(1);
+            document.getElementById('imperfectionistScore').textContent = imperfectionistScore.toFixed(1);
+            document.getElementById('appreciativeScore').textContent = appreciativeScore.toFixed(1);
+            document.getElementById('totalScore').textContent = totalScore.toFixed(1);
+
+            form.style.display = 'none';
+            document.querySelector('.results').classList.add('active');
+        });
+
+        // Initialize first section
+        showSection(0);
+    </script>
+</body>
+</html>
